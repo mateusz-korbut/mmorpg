@@ -6,4 +6,3 @@ return [
     'password' => '<PASSWORD>',
     'database' => '<DATABASE_NAME>'
 ];
-$servername = "mysql:host=$host;username:dbname=$dbname";
