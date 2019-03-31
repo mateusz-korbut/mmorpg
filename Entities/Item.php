@@ -2,6 +2,8 @@
 
 namespace entities;
 
+include "Entities/Entity.php";
+
 class Item extends Entity
 {
     private $strengthBonus;
