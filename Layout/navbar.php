@@ -1,4 +1,4 @@
-<header>
+<navbar>
     <h1>MMO users manager</h1>
 
     <?php if (isset($_SESSION["user"])): ?>
@@ -8,6 +8,6 @@
         Welcome <span id="username"></span>
         <script>auth.init(<?php echo $_SESSION["user"]; ?>)</script>
     <?php endif; ?>
-</header>
+</navbar>
 <?php
 
