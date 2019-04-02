@@ -19,6 +19,14 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
     if (mysqli_query($connection, $query)) {
         http_response_code(201);
         session_start();
+        $userSerialized = json_encode(array(
+            "id" => mysqli_insert_id($connection),
+            "roleId" => $user->roleId,
+            "statusId" => $user->statusId,
+            "name" => $user->name,
+            "created" => $user->created
+        ));
+
         $_SESSION["user"] = serialize($user);
         echo json_encode(array("message" => "User created."));
     } else {
