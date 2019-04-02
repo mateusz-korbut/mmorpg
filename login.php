@@ -19,6 +19,7 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
         {
             http_response_code(200);
 
+            session_start();
             unset($user["password"]);
             $userSerialized = json_encode($user);
             $_SESSION["user"] = $userSerialized;
