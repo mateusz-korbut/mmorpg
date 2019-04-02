@@ -27,7 +27,7 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
             "created" => $user->created
         ));
 
-        $_SESSION["user"] = serialize($user);
+        $_SESSION["user"] = $userSerialized;
         echo json_encode(array("message" => "User created."));
     } else {
         echo json_encode(array(
