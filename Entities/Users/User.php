@@ -2,77 +2,30 @@
 
 namespace entities\Users;
 
-include "Entities/Entity.php";
+include_once "Entities/Entity.php";
+include_once "Entities/Users/Role.php";
+include_once "Entities/Users/Status.php";
 
 use entities\Entity;
 
 class User extends Entity
 {
-    private $roleId;
-    private $statusId;
-    private $password;
-    private $characters;
-    private $created;
-    private $role;
-    private $status;
+    const TABLE_NAME = "users";
 
-    public function getRoleId(): int
-    {
-        return (int) $this->roleId;
-    }
+    public $roleId;
+    public $statusId;
+    public $password;
+    public $characters;
+    public $created;
+    public $role;
+    public $status;
 
-    public function setRoleId(int $roleId): self
+    public function __construct($name, $password)
     {
-        $this->roleId = $roleId;
-        return $this;
-    }
-
-    public function getStatusId(): int
-    {
-        return (int) $this->roleId;
-    }
-
-    public function setStatusId(int $statusId): self
-    {
-        $this->statusId = $statusId;
-        return $this;
-    }
-
-    public function getPassword(): string
-    {
-        return (string) $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-        return $this;
-    }
-
-    public function getCharacters(): array
-    {
-        return $this->characters;
-    }
-
-    public function setCharacters(array $characters): self
-    {
-        $this->characters = $characters;
-        return $this;
-    }
-
-    public function getCreated(): int
-    {
-        return (int) $this->created;
-    }
-
-    public function getRole(): int
-    {
-        return (int) $this->role;
-    }
-
-    public function getStatus(): int
-    {
-        return (int) $this->status;
+        $this->name = htmlspecialchars($name);
+        $this->password = password_hash(htmlspecialchars($password), PASSWORD_DEFAULT);
+        $this->roleId = Role::User;
+        $this->statusId = Status::Inactive;
     }
 
 }
