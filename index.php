@@ -11,11 +11,10 @@
     <script src="Scripts/index.js" defer></script>
 </head>
 <body>
-<div class="container">
 
-    <header>
-        <h1>MMO users manager</h1>
-    </header>
+<?php include("Layout/navbar.php");?>
+
+<div class="container">
 
     <main>
         <?php if (isset($_SESSION["user"])): ?>
