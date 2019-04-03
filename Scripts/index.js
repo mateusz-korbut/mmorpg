@@ -1,9 +1,5 @@
 let index = {
     init: function () {
-        $("#logoutBtn").click(function () {
-            index.logout();
-        });
-
         $("#loginForm").submit(function(event) {
             index.handleSubmit($( this ), event, "Services/Auth/login.php");
         });
@@ -29,15 +25,6 @@ let index = {
 
                 toaster.show(data);
             });
-    },
-    logout: function () {
-        $.get("Services/logout.php", function (data) {
-            toaster.show(data);
-            location.reload();
-        })
-            .fail(function(data) {
-                toaster.show(data);
-            })
     },
     getUserFromForm: function ($form) {
         const name = $form.find("input[name='name']").val();
