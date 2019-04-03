@@ -2,13 +2,6 @@
 
 session_start();
 
-$isSu = include_once "Services/Auth/isSu.php";
-if (!isset($_SESSION["user"]) || !$isSu)
-{
-    http_response_code(403);
-
-    die("You are not authorized");
-}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +16,7 @@ if (!isset($_SESSION["user"]) || !$isSu)
 <div class="container">
 
     <main>
-        <?php include("Templates/Manage/manage.php"); ?>
+        <?php include("Templates/Leaderboard/leaderboard.php"); ?>
     </main>
 
     <?php include("Layout/footer.php");?>
