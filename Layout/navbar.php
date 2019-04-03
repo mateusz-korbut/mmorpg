@@ -9,7 +9,6 @@
         <script>auth.init(<?php echo $_SESSION["user"]; ?>)</script>
     <?php endif; ?>
     <a href="leaderboard.php">leaderboard</a>
-    <a href="shop.php">shop</a>
     <?php if (isset($_SESSION["user"])): ?>
         <?php
             $isSu = include_once "Services/Auth/isSu.php";
