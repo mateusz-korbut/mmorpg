@@ -17,7 +17,7 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
 {
     $user = new User();
     $user->roleId = Role::User;
-    $user->statusId = Status::Inactive;
+    $user->statusId = Status::Active;
     $user->name = mysqli_real_escape_string($connection, $_POST["name"]);
     $user->password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
