@@ -17,15 +17,6 @@ class User extends Entity
     public $password;
     public $characters;
     public $created;
-    public $role;
-    public $status;
-
-    public function __construct($name, $password)
-    {
-        $this->name = htmlspecialchars($name);
-        $this->password = password_hash(htmlspecialchars($password), PASSWORD_DEFAULT);
-        $this->roleId = Role::User;
-        $this->statusId = Status::Inactive;
-    }
-
+    public $role = Role::User;
+    public $status = Status::Inactive;
 }
