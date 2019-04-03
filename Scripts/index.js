@@ -54,8 +54,43 @@ let index = {
     displayStats: function () {
         $.get("Services/Stats/getUserCharacters.php", function (data) {
             toaster.show(data);
-            console.log(data);
-            $("#quantityCharacters").text(data);
+            const charactersQuantity = JSON.parse(data).characters;
+
+            if (charactersQuantity)
+                $("#quantityCharacters").text(charactersQuantity);
+        })
+            .fail(function(data) {
+                toaster.show(data);
+            });
+
+        $.get("Services/Stats/getUserCoins.php", function (data) {
+            toaster.show(data);
+            const coins = JSON.parse(data).coins;
+
+            if (coins)
+                $("#coins").text(coins);
+        })
+            .fail(function(data) {
+                toaster.show(data);
+            });
+
+        $.get("Services/Stats/getUserCharacterMaxLevel.php", function (data) {
+            toaster.show(data);
+            const maxLevel = JSON.parse(data).level;
+
+            if (maxLevel)
+                $("#maxLevel").text(maxLevel);
+        })
+            .fail(function(data) {
+                toaster.show(data);
+            });
+
+        $.get("Services/Stats/getUserFavouriteRace.php", function (data) {
+            toaster.show(data);
+            const raceName = JSON.parse(data).name;
+
+            if (raceName)
+                $("#favouriteRace").text(raceName);
         })
             .fail(function(data) {
                 toaster.show(data);

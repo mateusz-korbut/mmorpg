@@ -18,7 +18,10 @@
 
     <main>
         <?php if (isset($_SESSION["user"])): ?>
-
+            You have: <span id="quantityCharacters"></span> characters<br>
+            You have: <span id="coins"></span> coins<br>
+            Max character level: <span id="maxLevel"></span><br>
+            Favourite race: <span id="favouriteRace"></span>
         <?php else:
             $id = "loginForm";
             $buttonText = "Login";
