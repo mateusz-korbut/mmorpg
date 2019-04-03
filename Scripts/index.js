@@ -12,6 +12,10 @@ let index = {
             index.handleSubmit($( this ), event, "Services/Auth/register.php");
         });
 
+        $("#characterForm").submit(function(event) {
+            index.handleCreatingCharacter($( this ), event);
+        });
+
         this.displayStats();
     },
     sendUser: function (url, user) {
@@ -95,6 +99,22 @@ let index = {
             .fail(function(data) {
                 toaster.show(data);
             });
+    },
+    handleCreatingCharacter: function ($form, event) {
+        event.preventDefault();
+        const name = $form.find("input[name='name']").val();
+        const raceId = $form.find("select[name='raceId']").val();
+
+        if (name !== undefined && raceId !== undefined)
+            $.post("Services/createCharacter.php", { name: name, raceId: raceId }, function(data) {
+                console.log(data);
+                toaster.show(data);
+            })
+                .fail(function(data) {
+                    console.log(data);
+
+                    toaster.show(data);
+                });
     }
 };
 
