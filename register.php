@@ -3,15 +3,21 @@
 http_response_code(400);
 
 include "Entities/Users/User.php";
+include "Entities/Users/Role.php";
+include "Entities/Users/Status.php";
 include "Utils/databaseConnection.php";
 
 use entities\Users\User;
+use entities\Users\Role;
+use entities\Users\Status;
 
 if (isset($_POST["name"]) && isset($_POST["password"]))
 {
-    $user = new User($_POST["name"], $_POST["password"]);
-    $user->roleId = 1;
-    $user->statusId = 2;
+    $user = new User();
+    $user->roleId = Role::User;
+    $user->statusId = Status::Inactive;
+    $user->name = mysqli_real_escape_string($connection, $_POST["name"]);
+    $user->password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
     $query = sprintf("INSERT INTO %s (role_id, status_id, name, password) VALUES
         (%d, %d, '%s', '%s')", User::TABLE_NAME, $user->roleId, $user->statusId, $user->name, $user->password);
@@ -27,7 +33,7 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
             "created" => $user->created
         ));
 
-        $_SESSION["user"] = serialize($user);
+        $_SESSION["user"] = $userSerialized;
         echo json_encode(array("message" => "User created."));
     } else {
         echo json_encode(array(
