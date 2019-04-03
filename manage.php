@@ -45,13 +45,47 @@ if (!isset($_SESSION["user"]) || !$isSu)
 
         if ($result = $connection->query($query))
         {
+            echo "<table>
+                    <tr>
+                        <th>userId</th>
+                        <th>userName</th>
+                        <th>created</th>
+                        <th>roleId</th>
+                        <th>roleName</th>
+                        <th>statusId</th>
+                        <th>statusName</th>
+                        <th>actions</th>
+                    </tr>";
+
             while ($row = $result->fetch_object())
             {
-                echo json_encode($row) . "<br>";
+                echo sprintf("<tr>
+                        <th>%s</th>
+                        <th>%s</th>
+                        <th>%s</th>
+                        <th>%d</th>
+                        <th>%s</th>
+                        <th>%d</th>
+                        <th>%s</th>
+                        <th><button>edit</button><button>delete</button></th>
+                    </tr>",
+                    $row->userId,
+                    $row->userName,
+                    $row->created,
+                    $row->roleId,
+                    $row->roleName,
+                    $row->statusId,
+                    $row->statusName
+                    );
             }
             http_response_code(200);
+
+            echo "</table>";
         }
-        echo $connection->error;
+        else
+        {
+            echo $connection->error;
+        }
 
         $connection->close();?>
     </main>
