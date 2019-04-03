@@ -14,7 +14,7 @@
         <?php
             $isSu = include_once "Services/Auth/isSu.php";
             if ($isSu):?>
-        <a href="manage.php">manage</a>
+        <a href="../manage.php">manage</a>
         <?php endif; ?>
     <?php endif; ?>
 </navbar>
