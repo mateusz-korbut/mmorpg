@@ -2,7 +2,7 @@
 
 namespace entities;
 
-include "Entities/Entity.php";
+require_once dirname(__FILE__) .  "Entity.php";
 
 class Item extends Entity
 {

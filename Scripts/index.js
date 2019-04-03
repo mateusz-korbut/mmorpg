@@ -5,12 +5,14 @@ let index = {
         });
 
         $("#loginForm").submit(function(event) {
-            index.handleSubmit($( this ), event, "login.php");
+            index.handleSubmit($( this ), event, "Services/Auth/login.php");
         });
 
         $("#registerForm").submit(function(event) {
-            index.handleSubmit($( this ), event, "register.php");
+            index.handleSubmit($( this ), event, "Services/Auth/register.php");
         });
+
+        this.displayStats();
     },
     sendUser: function (url, user) {
         $.post(url, { name: user.name, password: user.password }, function(data) {
@@ -25,7 +27,7 @@ let index = {
             });
     },
     logout: function () {
-        $.get("logout.php", function (data) {
+        $.get("Services/logout.php", function (data) {
             toaster.show(data);
             location.reload();
         })
@@ -48,6 +50,16 @@ let index = {
 
         if (user.name !== undefined && user.password !== undefined)
             index.sendUser(url, user);
+    },
+    displayStats: function () {
+        $.get("Services/Stats/getUserCharacters.php", function (data) {
+            toaster.show(data);
+            console.log(data);
+            $("#quantityCharacters").text(data);
+        })
+            .fail(function(data) {
+                toaster.show(data);
+            });
     }
 };
 

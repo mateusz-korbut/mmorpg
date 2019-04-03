@@ -2,9 +2,9 @@
 
 namespace entities\Users;
 
-include_once "Entities/Entity.php";
-include_once "Entities/Users/Role.php";
-include_once "Entities/Users/Status.php";
+require_once dirname(__FILE__) . "/../Entity.php";
+require_once dirname(__FILE__) . "/../Users/Role.php";
+require_once dirname(__FILE__) . "/../Users/Status.php";
 
 use entities\Entity;
 

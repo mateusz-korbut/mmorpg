@@ -1,6 +1,6 @@
 <?php
 
-$config = include("Configs/databaseConfig.php");
+$config = require_once dirname(__FILE__) . "/../Configs/databaseConfig.php";
 
 $connection = new mysqli($config['host'], $config['user'], $config['password'], $config['database']);
 

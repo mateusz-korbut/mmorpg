@@ -2,8 +2,10 @@
 
 http_response_code(400);
 
-include "Entities/Users/User.php";
-include "Utils/databaseConnection.php";
+$rootFolder = dirname(__FILE__) . "/../../";
+
+require_once $rootFolder .  "Entities/Users/User.php";
+require_once $rootFolder . "Utils/databaseConnection.php";
 
 use entities\Users\User;
 
