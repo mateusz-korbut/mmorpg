@@ -2,9 +2,9 @@
 
 namespace entities\Users;
 
-include_once "Entities/Entity.php";
-include_once "Entities/Users/Role.php";
-include_once "Entities/Users/Status.php";
+require_once dirname(__FILE__) . "/../Entity.php";
+require_once dirname(__FILE__) . "/../Users/Role.php";
+require_once dirname(__FILE__) . "/../Users/Status.php";
 
 use entities\Entity;
 
@@ -18,5 +18,5 @@ class User extends Entity
     public $characters;
     public $created;
     public $role = Role::User;
-    public $status = Status::Inactive;
+    public $status = Status::Active;
 }

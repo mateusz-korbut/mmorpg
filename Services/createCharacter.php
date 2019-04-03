@@ -2,8 +2,8 @@
 
 http_response_code(400);
 
-include "Entities/Characters/Character.php";
-include "Utils/databaseConnection.php";
+require_once dirname(__FILE__) . "/../Entities/Characters/Character.php";
+require_once dirname(__FILE__) . "/../Utils/databaseConnection.php";
 
 use entities\Characters\Character;
 

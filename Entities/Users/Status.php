@@ -2,7 +2,7 @@
 
 namespace entities\Users;
 
-include_once "Entities/Entity.php";
+require_once dirname(__FILE__) . "/../Entity.php";
 
 use entities\Entity;
 
@@ -10,8 +10,7 @@ class Status extends Entity
 {
     const TABLE_NAME = "statuses";
 
-    const Inactive = 1;
-    const Active = 2;
-    const Blocked = 3;
+    const Active = 1;
+    const Blocked = 2;
 
 }

@@ -10,8 +10,11 @@
     <?php endif; ?>
     <a href="leaderboard.php">leaderboard</a>
     <a href="shop.php">shop</a>
-    <?php if (isset($_SESSION["user"])):
-        include "Utils/isSU.php";?>
+    <?php if (isset($_SESSION["user"])): ?>
+        <?php
+            $isSu = include_once "Services/Auth/isSu.php";
+            if ($isSu):?>
         <a href="manage.php">manage</a>
+        <?php endif; ?>
     <?php endif; ?>
 </navbar>

@@ -1,16 +1,18 @@
 let index = {
     init: function () {
-        $("#logoutBtn").click(function () {
-            index.logout();
-        });
-
         $("#loginForm").submit(function(event) {
-            index.handleSubmit($( this ), event, "login.php");
+            index.handleSubmit($( this ), event, "Services/Auth/login.php");
         });
 
         $("#registerForm").submit(function(event) {
-            index.handleSubmit($( this ), event, "register.php");
+            index.handleSubmit($( this ), event, "Services/Auth/register.php");
         });
+
+        $("#characterForm").submit(function(event) {
+            index.handleCreatingCharacter($( this ), event);
+        });
+
+        this.displayStats();
     },
     sendUser: function (url, user) {
         $.post(url, { name: user.name, password: user.password }, function(data) {
@@ -23,15 +25,6 @@ let index = {
 
                 toaster.show(data);
             });
-    },
-    logout: function () {
-        $.get("logout.php", function (data) {
-            toaster.show(data);
-            location.reload();
-        })
-            .fail(function(data) {
-                toaster.show(data);
-            })
     },
     getUserFromForm: function ($form) {
         const name = $form.find("input[name='name']").val();
@@ -48,6 +41,67 @@ let index = {
 
         if (user.name !== undefined && user.password !== undefined)
             index.sendUser(url, user);
+    },
+    displayStats: function () {
+        $.get("Services/Stats/getUserCharacters.php", function (data) {
+            toaster.show(data);
+            const charactersQuantity = JSON.parse(data).characters;
+
+            if (charactersQuantity)
+                $("#quantityCharacters").text(charactersQuantity);
+        })
+            .fail(function(data) {
+                toaster.show(data);
+            });
+
+        $.get("Services/Stats/getUserCoins.php", function (data) {
+            toaster.show(data);
+            const coins = JSON.parse(data).coins;
+
+            if (coins)
+                $("#coins").text(coins);
+        })
+            .fail(function(data) {
+                toaster.show(data);
+            });
+
+        $.get("Services/Stats/getUserCharacterMaxLevel.php", function (data) {
+            toaster.show(data);
+            const maxLevel = JSON.parse(data).level;
+
+            if (maxLevel)
+                $("#maxLevel").text(maxLevel);
+        })
+            .fail(function(data) {
+                toaster.show(data);
+            });
+
+        $.get("Services/Stats/getUserFavouriteRace.php", function (data) {
+            toaster.show(data);
+            const raceName = JSON.parse(data).name;
+
+            if (raceName)
+                $("#favouriteRace").text(raceName);
+        })
+            .fail(function(data) {
+                toaster.show(data);
+            });
+    },
+    handleCreatingCharacter: function ($form, event) {
+        event.preventDefault();
+        const name = $form.find("input[name='name']").val();
+        const raceId = $form.find("select[name='raceId']").val();
+
+        if (name !== undefined && raceId !== undefined)
+            $.post("Services/createCharacter.php", { name: name, raceId: raceId }, function(data) {
+                console.log(data);
+                toaster.show(data);
+            })
+                .fail(function(data) {
+                    console.log(data);
+
+                    toaster.show(data);
+                });
     }
 };
 

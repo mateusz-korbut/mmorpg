@@ -2,7 +2,7 @@
 
 namespace entities\Characters;
 
-include "Entities/Entity.php";
+require_once dirname(__FILE__) . "/../Entity.php";
 
 use entities\Entity;
 

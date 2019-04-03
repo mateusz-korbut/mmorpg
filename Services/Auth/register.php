@@ -2,10 +2,12 @@
 
 http_response_code(400);
 
-include "Entities/Users/User.php";
-include "Entities/Users/Role.php";
-include "Entities/Users/Status.php";
-include "Utils/databaseConnection.php";
+$rootFolder = dirname(__FILE__) . "/../../";
+
+require_once $rootFolder .  "Entities/Users/User.php";
+require_once $rootFolder .  "Entities/Users/Role.php";
+require_once $rootFolder . "Entities/Users/Status.php";
+require_once $rootFolder . "Utils/databaseConnection.php";
 
 use entities\Users\User;
 use entities\Users\Role;
@@ -15,7 +17,7 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
 {
     $user = new User();
     $user->roleId = Role::User;
-    $user->statusId = Status::Inactive;
+    $user->statusId = Status::Active;
     $user->name = mysqli_real_escape_string($connection, $_POST["name"]);
     $user->password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
