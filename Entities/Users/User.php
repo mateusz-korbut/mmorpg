@@ -18,5 +18,5 @@ class User extends Entity
     public $characters;
     public $created;
     public $role = Role::User;
-    public $status = Status::Inactive;
+    public $status = Status::Active;
 }
