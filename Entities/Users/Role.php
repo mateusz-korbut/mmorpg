@@ -2,7 +2,7 @@
 
 namespace entities\Users;
 
-include_once "Entities/Entity.php";
+require_once dirname(__FILE__) . "/../Entity.php";
 
 use entities\Entity;
 
