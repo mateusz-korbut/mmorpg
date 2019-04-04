@@ -15,7 +15,7 @@ session_start();
 
     <?php include("Layout/navbar.php");?>
 
-    <div class="col-8 container dashboard align-self-center">
+    <div class="col-8 container dashboard align-self-center mb-5">
         <?php include("Templates/Leaderboard/leaderboard.php"); ?>
     </div>
 
