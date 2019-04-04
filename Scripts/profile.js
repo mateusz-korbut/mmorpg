@@ -30,7 +30,7 @@ let profile = {
         event.preventDefault();
         const name = $form.find("input[name='name']").val();
 
-        if (name !== undefined && name !== undefined)
+        if (name !== undefined)
             $.post("Services/Character/editCharacterName.php", { id: id, name: name }, function() {
                 console.log("Updated");
                 let span = "<span>" + name + "</span>";
