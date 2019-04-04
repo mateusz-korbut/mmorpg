@@ -31,7 +31,7 @@ let profile = {
         const name = $form.find("input[name='name']").val();
 
         if (name !== undefined && name !== undefined)
-            $.post("Services/editCharacterName.php", { id: id, name: name }, function() {
+            $.post("Services/Character/editCharacterName.php", { id: id, name: name }, function() {
                 console.log("Updated");
                 let span = "<span>" + name + "</span>";
                 $form.replaceWith(span);
@@ -42,7 +42,7 @@ let profile = {
                 });
     },
     deleteCharacter: function (id) {
-        $.post("Services/deleteCharacter.php", { id: id }, function() {
+        $.post("Services/Character/deleteCharacter.php", { id: id }, function() {
             console.log("Deleted");
             $(`#character-${id}`).hide();
         })
@@ -57,7 +57,7 @@ let profile = {
         const raceId = $form.find("select[name='raceId']");
 
         if (name !== undefined && raceId !== undefined)
-            $.post("Services/createCharacter.php", { name: name.val(), raceId: raceId.val() }, function(data) {
+            $.post("Services/Character/createCharacter.php", { name: name.val(), raceId: raceId.val() }, function(data) {
                 console.log(data);
                 toaster.show(data);
 
