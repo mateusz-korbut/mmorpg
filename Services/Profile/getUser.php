@@ -21,6 +21,4 @@ $query = sprintf("SELECT
 
 $result = $connection->query($query);
 
-$connection->close();
-
 return $result;
