@@ -1,10 +1,6 @@
 let index = {
     init: function () {
         if (auth.user !== null) {
-            $("#characterForm").submit(function(event) {
-                index.handleCreatingCharacter($( this ), event);
-            });
-
             this.displayStats();
         } else {
             $("#loginForm").submit(function(event) {
@@ -46,22 +42,6 @@ let index = {
     },
     displayStats: function () {
         console.log(this.characters);
-    },
-    handleCreatingCharacter: function ($form, event) {
-        event.preventDefault();
-        const name = $form.find("input[name='name']").val();
-        const raceId = $form.find("select[name='raceId']").val();
-
-        if (name !== undefined && raceId !== undefined)
-            $.post("Services/createCharacter.php", { name: name, raceId: raceId }, function(data) {
-                console.log(data);
-                toaster.show(data);
-            })
-                .fail(function(data) {
-                    console.log(data);
-
-                    toaster.show(data);
-                });
     },
     displayStats: function () {
         $.get("Services/Stats/getUserCharacters.php", function (data) {
