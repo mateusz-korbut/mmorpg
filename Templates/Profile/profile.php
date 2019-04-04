@@ -1,20 +1,22 @@
 <?php
 
-require_once dirname(__FILE__) . "/../../Services/Profile/getUser.php";
+$user= require_once dirname(__FILE__) . "/../../Services/Profile/getUser.php";
 require_once dirname(__FILE__) . "/../../Services/Profile/getUserCharacters.php";
 require_once dirname(__FILE__) . "/../../Templates/newCharacterModal.php";
 
-if ($result && $characters)
-{
-    $user = $result->fetch_object();
-}
-else
-{
-    die("Problem with database");
-}
 ?>
 
-<table class="table">
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><?=$user->userName?></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><?=$user->created?></h6>
+        <p class="card-text">Role: <?=$user->roleName?><br>Account status: <?=$user->statusName?></p>
+        <a href="#" class="card-link">Edit</a>
+        <a href="#" class="card-link btn-outline-danger">Delete</a>
+    </div>
+</div>
+
+<table class="table mt-3">
     <thead>
         <tr>
             <td colspan="6">
