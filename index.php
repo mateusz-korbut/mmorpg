@@ -14,6 +14,7 @@
 <head>
     <?php include("Layout/head.php"); ?>
     <script src="Scripts/index.js" defer></script>
+    <link rel="stylesheet" href="Styles/index.css">
 </head>
 <body class="background-img">
 <div class="row body">

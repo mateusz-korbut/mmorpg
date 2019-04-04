@@ -40,8 +40,3 @@ footer {
     display: flex;
     flex-direction: column;
 }
-
-.chart {
-    min-width: 550px;
-    min-height: 380px;
-}
