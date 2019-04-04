@@ -11,12 +11,10 @@ if (isset($_SESSION["user"])) {
                                 characters.level,
                                 characters.health_points,
                                 characters.coins
-                            FROM users_characters
-                            JOIN characters
-                            ON character_id = characters.id
+                            FROM characters
                             JOIN race
                             ON race_id = race.id
-                            WHERE user_id = %d;", json_decode($_SESSION["user"])->id);
+                            WHERE creator_id = %d;", json_decode($_SESSION["user"])->id);
 
     $result = $connection->query($query);
 

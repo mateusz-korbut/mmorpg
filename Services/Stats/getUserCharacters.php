@@ -8,15 +8,13 @@ if (isset($_SESSION["user"])) {
     $query = sprintf("SELECT
                                 characters.id,
                                 characters.name,
-                                characters.level,
-                                characters.health_points,
-                                characters.coins
-                            FROM users_characters
-                            JOIN characters
-                            ON character_id = characters.id
+                                level,
+                                health_points,
+                                coins
+                            FROM characters
                             JOIN race
                             ON race_id = race.id
-                            WHERE user_id = %d;", json_decode($_SESSION["user"])->id);
+                            WHERE creator_id = %d;", json_decode($_SESSION["user"])->id);
 
     $result = $connection->query($query);
 

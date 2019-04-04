@@ -2,8 +2,8 @@
 
 http_response_code(400);
 
-require_once dirname(__FILE__) . "/../Entities/Characters/Character.php";
-require_once dirname(__FILE__) . "/../Utils/databaseConnection.php";
+require_once dirname(__FILE__) . "/../../Entities/Characters/Character.php";
+require_once dirname(__FILE__) . "/../../Utils/databaseConnection.php";
 
 use entities\Characters\Character;
 
@@ -11,6 +11,8 @@ session_start();
 
 if (isset($_POST["id"]) && isset($_SESSION["user"]))
 {
+    $isSu = include_once "Services/Auth/isSu.php";
+
     $character= new Character();
     $character->id = mysqli_real_escape_string($connection, $_POST["id"]);
 

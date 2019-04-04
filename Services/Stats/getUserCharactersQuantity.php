@@ -3,7 +3,7 @@
 session_start();
 
 if (isset($_SESSION["user"])) {
-    $query = sprintf("SELECT COUNT(user_id) AS characters FROM users_characters WHERE user_id = %d",
+    $query = sprintf("SELECT COUNT(creator_id) AS characters FROM characters WHERE creator_id = %d",
         json_decode($_SESSION["user"])->id);
 
     require_once dirname(__FILE__) . "/../../Utils/simpleQueryHandler.php";

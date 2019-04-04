@@ -2,8 +2,8 @@
 
 http_response_code(400);
 
-require_once dirname(__FILE__) . "/../Entities/Characters/Character.php";
-require_once dirname(__FILE__) . "/../Utils/databaseConnection.php";
+require_once dirname(__FILE__) . "/../../Entities/Characters/Character.php";
+require_once dirname(__FILE__) . "/../../Utils/databaseConnection.php";
 
 use entities\Characters\Character;
 
@@ -15,30 +15,18 @@ if (isset($_POST["name"]) && isset($_POST["raceId"]) && isset($_SESSION["user"])
     $character->raceId = mysqli_real_escape_string($connection, $_POST["raceId"]);
     $character->name = mysqli_real_escape_string($connection, $_POST["name"]);
 
-    $query = sprintf("INSERT INTO %s (race_id, name) VALUES (%d, '%s')",
-        Character::TABLE_NAME, $character->raceId, $character->name);
+    $query = sprintf("INSERT INTO %s (race_id, creator_id, name) VALUES (%d, %d, '%s')",
+        Character::TABLE_NAME, $character->raceId, json_decode($_SESSION["user"])->id, $character->name);
 
     if (mysqli_query($connection, $query))
     {
         $character->id = mysqli_insert_id($connection);
 
-        $query = sprintf("INSERT INTO users_characters VALUES ('%d', '%d')",
-            json_decode($_SESSION["user"])->id, $character->id);
+        $result = $connection->query(sprintf("SELECT * FROM %s WHERE id = %d",
+            Character::TABLE_NAME, $character->id));
 
-        if (mysqli_query($connection, $query))
-        {
-            $result = $connection->query(sprintf("SELECT * FROM %s WHERE id = %d",
-                Character::TABLE_NAME, $character->id));
-            http_response_code(201);
-
-            echo json_encode($result->fetch_assoc());
-        }
-        else
-        {
-            echo json_encode(array(
-                "error" => mysqli_error($connection),
-                "query" => $query));
-        }
+        http_response_code(201);
+        echo json_encode($result->fetch_assoc());
     }
     else
     {
