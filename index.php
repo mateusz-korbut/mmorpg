@@ -24,15 +24,15 @@
 
     <div class="col-8 container dashboard">
         <?php if (isset($_SESSION["user"])): ?>
-        <div class="row mt-2 justify-content-center">
-            <div class="col-5">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h1 class="card-title">Your characters stats</h1>
+            <div class="row mt-2 justify-content-center">
+                <div class="col-5">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h1 class="card-title">Your characters stats</h1>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             <div class="row my-4">
                 <div class="col chart">
                     <div id="levelsChart"></div>
