@@ -1,12 +1,12 @@
-<div class="row">
+<div class="row my-2">
     <div class="col">
-        <h1 class="text-center">MMO users manager</h1>
+        <h1 class="text-center"><a href="./">MMO users manager</a></h1>
     </div>
 </div>
 <?php if (isset($_SESSION["user"])): ?>
-    <div class="row">
+    <div class="row my-2">
         <div class="col">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <script src="Scripts/auth.js"></script>
                     </button>
@@ -19,20 +19,24 @@
         </div>
     </div>
 <?php endif; ?>
-<div class="row">
-    <div class="col">
-        <a class="btn btn-outline-primary" href="leaderboard.php">Leaderboard</a>
-    </div>
-</div>
+    <a class="btn btn-outline-primary my-2" href="leaderboard.php">
+        <div class="row">
+            <div class="col">
+                Leaderboard
+            </div>
+        </div>
+    </a>
 <?php if (isset($_SESSION["user"])): ?>
     <?php
             $isSu = include_once "Services/Auth/isSu.php";
             if ($isSu):?>
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-outline-primary" href="manage.php">Manage</button>
-                </div>
-            </div>
+                <a class="btn btn-outline-primary my-2" href="manage.php">
+                    <div class="row">
+                        <div class="col">
+                            Manage
+                        </div>
+                    </div>
+                </a>
         <?php endif; ?>
     <?php endif; ?>
 </navbar>
