@@ -35,6 +35,13 @@ let profile = {
                 });
     },
     deleteCharacter: function (id) {
-
+        $.post("Services/deleteCharacter.php", { id: id }, function() {
+            console.log("Deleted");
+            $(`#character-${id}`).hide();
+        })
+            .fail(function(data) {
+                console.log(data);
+                toaster.show(data);
+            });
     },
 };
