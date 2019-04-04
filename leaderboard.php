@@ -8,16 +8,16 @@ session_start();
 <html lang="pl">
 <head>
     <?php include("Layout/head.php"); ?>
+    <link rel="stylesheet" href="Styles/leaderboard.css">
 </head>
-<body>
+<body class="background-img">
+<div class="row body">
 
-<?php include("Layout/navbar.php");?>
+    <?php include("Layout/navbar.php");?>
 
-<div class="container">
-
-    <main>
+    <div class="col-8 container dashboard align-self-center">
         <?php include("Templates/Leaderboard/leaderboard.php"); ?>
-    </main>
+    </div>
 
     <?php include("Layout/footer.php");?>
 
