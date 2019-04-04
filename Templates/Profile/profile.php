@@ -16,13 +16,16 @@ else
 
 <table class="table">
     <thead>
-    <tr>
-        <td colspan="6">
-            <button class="btn" data-toggle="modal" data-target="#charCreatorModal">
-                Add new character <i class="fas fa-plus-square"></i>
-            </button>
-        </td>
-    </tr>
+        <tr>
+            <td colspan="6">
+                <div class="row">
+                    <h3 class="col text-center pl-5">Your characters</h3>
+                    <button class="btn col-2" data-toggle="modal" data-target="#charCreatorModal">
+                        Add new character <i class="fas fa-plus-square"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
         <tr>
             <th>Id</th>
             <th>Name</th>
