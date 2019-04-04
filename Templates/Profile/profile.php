@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__) . "/../../Services/Profile/getUser.php";
 require_once dirname(__FILE__) . "/../../Services/Profile/getUserCharacters.php";
+require_once dirname(__FILE__) . "/../../Templates/newCharacterModal.php";
 
 if ($result && $characters)
 {
@@ -15,6 +16,13 @@ else
 
 <table class="table">
     <thead>
+    <tr>
+        <td colspan="6">
+            <button class="btn" data-toggle="modal" data-target="#charCreatorModal">
+                Add new character <i class="fas fa-plus-square"></i>
+            </button>
+        </td>
+    </tr>
         <tr>
             <th>Id</th>
             <th>Name</th>
@@ -24,9 +32,9 @@ else
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="characters">
     <?php foreach($characters as $character): ?>
-        <tr>
+        <tr id="character-<?=$character->id?>">
             <th><?=$character->id;?></th>
             <td><span id="name-<?=$character->id;?>"><?=$character->name;?></span></td>
             <td><?=$character->level;?></td>
