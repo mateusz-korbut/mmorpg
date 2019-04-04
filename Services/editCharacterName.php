@@ -31,7 +31,7 @@ if (isset($_POST["name"]) && isset($_POST["id"]) && isset($_SESSION["user"]))
 }
 else
 {
-    echo json_encode(array("error" => "Unable to create character. Wrong data!"));
+    echo json_encode(array("error" => "Unable to edit character. Wrong data!"));
 }
 
 $connection->close();
