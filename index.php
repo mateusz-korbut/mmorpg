@@ -22,9 +22,18 @@
         <?php include("Layout/navbar.php");?>
     </div>
 
-    <div class="container dashboard">
+    <div class="col-8 container dashboard">
         <?php if (isset($_SESSION["user"])): ?>
-            <div class="row my-5">
+        <div class="row mt-2 justify-content-center">
+            <div class="col-5">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h1 class="card-title">Your characters stats</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row my-4">
                 <div class="col chart">
                     <div id="levelsChart"></div>
                 </div>
@@ -44,21 +53,21 @@
             <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
             <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
-            <div class="row">
-                Create new character:
-                <form id="characterForm">
-                    <input name="name" type="text" minlength="1" maxlength="25">
-                    <select name="raceId">
-                        <?php
-                        echo "<option value='". Race::Human ."'>Human</option>";
-                        echo "<option value='". Race::Elf ."'>Elf</option>";
-                        echo "<option value='". Race::Dwarf ."'>Dwarf</option>";
-                        echo "<option value='". Race::Orc ."'>Orc</option>";
-                        ?>
-                    </select>
-                    <input type="submit" value="Create">
-                </form>
-            </div>
+<!--            <div class="row">-->
+<!--                Create new character:-->
+<!--                <form id="characterForm">-->
+<!--                    <input name="name" type="text" minlength="1" maxlength="25">-->
+<!--                    <select name="raceId">-->
+<!--                        --><?php
+//                        echo "<option value='". Race::Human ."'>Human</option>";
+//                        echo "<option value='". Race::Elf ."'>Elf</option>";
+//                        echo "<option value='". Race::Dwarf ."'>Dwarf</option>";
+//                        echo "<option value='". Race::Orc ."'>Orc</option>";
+//                        ?>
+<!--                    </select>-->
+<!--                    <input type="submit" value="Create">-->
+<!--                </form>-->
+<!--            </div>-->
         <?php else:
             $id = "loginForm";
             $buttonText = "Login";
