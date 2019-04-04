@@ -18,9 +18,7 @@
 <body class="background-img">
 <div class="row body">
 
-    <div class="col-2 pl-4 sidebar" style="background-color: white">
-        <?php include("Layout/navbar.php");?>
-    </div>
+    <?php include("Layout/navbar.php");?>
 
     <div class="col-8 container dashboard">
         <?php if (isset($_SESSION["user"])): ?>

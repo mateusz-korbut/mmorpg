@@ -1,3 +1,4 @@
+<div class="col-2 pl-4 sidebar" style="background-color: white">
 <div class="row my-2">
     <div class="col">
         <h1 class="text-center"><a href="./">MMO users manager</a></h1>
@@ -19,6 +20,13 @@
         </div>
     </div>
 <?php endif; ?>
+    <a class="btn btn-outline-primary my-2" href="./">
+        <div class="row">
+            <div class="col">
+                Home
+            </div>
+        </div>
+    </a>
     <a class="btn btn-outline-primary my-2" href="leaderboard.php">
         <div class="row">
             <div class="col">
@@ -40,3 +48,4 @@
         <?php endif; ?>
     <?php endif; ?>
 </navbar>
+</div>
