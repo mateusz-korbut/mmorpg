@@ -27,7 +27,7 @@ else
     <tbody>
     <?php foreach($characters as $character): ?>
         <tr>
-            <td><?=$character->id;?></td>
+            <th><?=$character->id;?></th>
             <td><span id="name-<?=$character->id;?>"><?=$character->name;?></span></td>
             <td><?=$character->level;?></td>
             <td><?=$character->health_points;?></td>

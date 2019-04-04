@@ -17,9 +17,9 @@ if ($result)
     while ($row = $result->fetch_object())
     {
         echo sprintf("<tr>
-                        <th>%s</th>
-                        <th>%s</th>
                         <th>%d</th>
+                        <td>%s</td>
+                        <td>%d</td>
                     </tr>",
             $row->userId,
             $row->userName,
