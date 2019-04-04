@@ -9,18 +9,18 @@ session_start();
 <head>
     <?php include("Layout/head.php"); ?>
 </head>
-<body>
+<body class="background-img">
+<div class="row body">
 
-<?php include("Layout/navbar.php");?>
+    <?php include("Layout/navbar.php");?>
 
-<div class="container">
-
-    <main>
+    <div class="col-8 container dashboard align-self-center">
         <?php include("Templates/Profile/profile.php"); ?>
-    </main>
+    </div>
 
     <?php include("Layout/footer.php");?>
 
+</div>
 </div>
 </body>
 </html>
