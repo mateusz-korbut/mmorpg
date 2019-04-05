@@ -128,6 +128,16 @@ let profile = {
                     toaster.show(data);
                 });
     },
+    deleteUser: function (id) {
+        $.post("Services/User/deleteUser.php", { id: id }, function() {
+            console.log("Deleted");
+            $(`#character-${id}`).hide();
+        })
+            .fail(function(data) {
+                console.log(data);
+                toaster.show(data);
+            });
+    },
 };
 
 $(document).ready(function() {
