@@ -47,7 +47,7 @@ require_once dirname(__FILE__) . "/../../Templates/newCharacterModal.php";
             <td><?=$character->coins;?></td>
             <td>
                 <i class="fas fa-user-edit mr-2" onclick="profile.editCharacter(<?=$character->id;?>)"></i>
-                <i class="fas fa-trash ml-2" onclick="profile.deleteCharacter(<?=$character->id;?>)"></i>
+                <i class="fas fa-trash ml-2" onclick="auth.deleteCharacter(<?=$character->id;?>)"></i>
             </td>
         </tr>
     <?php endforeach; ?>
