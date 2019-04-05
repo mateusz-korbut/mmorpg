@@ -5,6 +5,15 @@ require_once dirname(__FILE__) . "/../../Utils/databaseConnection.php";
 $characters = array();
 
 if (isset($_SESSION["user"])) {
+    if (isset($_POST["id"]) && $isSu)
+    {
+        $id = $_POST["id"];
+    }
+    else
+    {
+        $id = json_decode($_SESSION["user"])->id;
+    }
+
     $query = sprintf("SELECT
                                 characters.id,
                                 characters.name,
@@ -14,7 +23,7 @@ if (isset($_SESSION["user"])) {
                             FROM characters
                             JOIN race
                             ON race_id = race.id
-                            WHERE creator_id = %d;", json_decode($_SESSION["user"])->id);
+                            WHERE creator_id = %d;", $id);
 
     $result = $connection->query($query);
 
