@@ -11,14 +11,14 @@ session_start();
 
 $isSu = include_once dirname(__FILE__) . "/../Auth/isSu.php";
 
-if ($isSu && isset($_POST["roleId"]) && isset($_POST["userId"]))
+if ($isSu && isset($_POST["statusId"]) && isset($_POST["userId"]))
 {
     $user= new User();
     $user->id = mysqli_real_escape_string($connection, $_POST["userId"]);
-    $user->roleId = mysqli_real_escape_string($connection, $_POST["roleId"]);
+    $user->statusId = mysqli_real_escape_string($connection, $_POST["statusId"]);
 
-    $query = sprintf("UPDATE %s SET role_id = '%s' WHERE id = %d;",
-        User::TABLE_NAME, $user->roleId, $user->id);
+    $query = sprintf("UPDATE %s SET status_id = '%s' WHERE id = %d;",
+        User::TABLE_NAME, $user->statusId, $user->id);
 
     if (mysqli_query($connection, $query))
     {
