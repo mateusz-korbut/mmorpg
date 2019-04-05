@@ -2,45 +2,42 @@
 
 require_once dirname(__FILE__) . "/../../Services/Manage/getUsers.php";
 
-if ($result)
-{
-    echo "<table>
-                    <tr>
-                        <th>userId</th>
-                        <th>userName</th>
-                        <th>created</th>
-                        <th>roleId</th>
-                        <th>roleName</th>
-                        <th>statusId</th>
-                        <th>statusName</th>
-                        <th>actions</th>
-                    </tr>";
+?>
 
-    while ($row = $result->fetch_object())
-    {
-        echo sprintf("<tr>
-                        <th>%s</th>
-                        <th>%s</th>
-                        <th>%s</th>
-                        <th>%d</th>
-                        <th>%s</th>
-                        <th>%d</th>
-                        <th>%s</th>
-                        <th><button>edit</button><button>delete</button></th>
-                    </tr>",
-            $row->userId,
-            $row->userName,
-            $row->created,
-            $row->roleId,
-            $row->roleName,
-            $row->statusId,
-            $row->statusName
-        );
-    }
+<table class="table mt-3 text-center">
+    <thead>
+    <tr>
+        <td colspan="6">
+            <h3>Users</h3>
+        </td>
+    </tr>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="users">
+    <?php foreach($users as $user): ?>
+        <tr id="user-<?=$user->userId?>">
+            <th><?=$user->id;?></th>
+            <td><?=$user->name;?></td>
+            <td><?=$user->created;?></td>
+            <td><?=$user->roleName;?></td>
+            <td><?=$user->statusName;?></td>
+            <td>
+                <i class="fas fa-user-edit mr-2" onclick="profile.editCharacter(<?=$user->id;?>)"></i>
+                <i class="fas fa-trash ml-2" onclick="profile.deleteCharacter(<?=$user->id;?>)"></i>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
 
-    echo "</table>";
-}
-else
-{
-    echo "Problem with database";
-}
+
+<form>
+
+</form>
