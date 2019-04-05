@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . "/../../Services/Leaderboard/getMostLeveledUser
 
 if ($result)
 {
-    echo "<table class=\"table mb-5\">
+    echo "<table class=\"table mb-5 text-center\">
                 <thead>
                     <tr>
                         <th>User id</th>

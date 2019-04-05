@@ -16,7 +16,7 @@ require_once dirname(__FILE__) . "/../../Templates/newCharacterModal.php";
     </div>
 </div>
 
-<table class="table mt-3">
+<table class="table mt-3 text-center">
     <thead>
         <tr>
             <td colspan="6">
