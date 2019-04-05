@@ -5,6 +5,33 @@ let profile = {
 
             profile.createCharacter(event);
         });
+
+        $("#editUsername").click(function (event) {
+            event.preventDefault();
+
+            profile.editUserName()
+        })
+    },
+    editUserName: function () {
+        const cardTitle = $("#profileName");
+        let username = cardTitle.text();
+
+        let form = $('<form class="input-group"></form>');
+        const charNameInput = $('<input />', {
+            'type': 'text',
+            'name': 'name',
+            'value': username,
+            'class': 'form-control'
+        });
+        const submit = $('<button class="input-group-text btn btn-outline-primary">Change</button>');
+
+        form.append(charNameInput);
+        form.append(submit);
+        form.submit(function(event) {
+            profile.updateUserName(form, event);
+        });
+
+        cardTitle.replaceWith(form);
     },
     editCharacter: function (id) {
         const span = $(`#name-${id}`);
@@ -21,12 +48,12 @@ let profile = {
         form.append(charNameInput);
         form.append(submit);
         form.submit(function(event) {
-            profile.update(form, event, id);
+            profile.updateCharacter(form, event, id);
         });
 
         span.replaceWith(form);
     },
-    update: function ($form, event, id) {
+    updateCharacter: function ($form, event, id) {
         event.preventDefault();
         const name = $form.find("input[name='name']").val();
 
@@ -84,7 +111,23 @@ let profile = {
                     <i class="fas fa-trash ml-2" onclick="profile.deleteCharacter(${character.id})"></i>
                     </td>` +
             '</tr>');
-    }
+    },
+    updateUserName: function ($form, event) {
+        event.preventDefault();
+        const name = $form.find("input[name='name']").val();
+        let userId = auth.user.id;
+
+        if (name !== undefined)
+            $.post("Services/Profile/editUserName.php", { id: userId, name: name }, function() {
+                console.log("Updated");
+                let cardTitle = "<h5 class=\"card-title\" id=\"username\">" + name + "</h5>";
+                $form.replaceWith(cardTitle);
+            })
+                .fail(function(data) {
+                    console.log(data);
+                    toaster.show(data);
+                });
+    },
 };
 
 $(document).ready(function() {
