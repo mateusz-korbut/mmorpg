@@ -6,15 +6,13 @@ session_start();
 
 if (isset($_SESSION["user"])) {
     $query = sprintf("SELECT
-                                characters.id,
-                                characters.name,
-                                level,
-                                health_points,
-                                coins
+                                race.name,
+                                COUNT(race.name) AS quantity
                             FROM characters
                             JOIN race
                             ON race_id = race.id
-                            WHERE creator_id = %d;", json_decode($_SESSION["user"])->id);
+                            WHERE creator_id = %d
+                            GROUP BY race.name;", json_decode($_SESSION["user"])->id);
 
     $result = $connection->query($query);
 

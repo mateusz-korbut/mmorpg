@@ -2,15 +2,15 @@
 
 require_once dirname(__FILE__) . "/../../Utils/databaseConnection.php";
 
-session_start();
+$characters = array();
 
 if (isset($_SESSION["user"])) {
     $query = sprintf("SELECT
                                 characters.id,
                                 characters.name,
-                                level,
-                                health_points,
-                                coins
+                                characters.level,
+                                characters.health_points,
+                                characters.coins
                             FROM characters
                             JOIN race
                             ON race_id = race.id
@@ -18,13 +18,16 @@ if (isset($_SESSION["user"])) {
 
     $result = $connection->query($query);
 
-    $json = array();
-
-    while($row = $result->fetch_object()){
-        $json[] = $row;
+    if ($result) {
+        while($row = $result->fetch_object()){
+            array_push($characters, $row);
+        }
+    }
+    else {
+        die($connection->error);
     }
 
-    echo json_encode($json);
+    return $characters;
 } else {
-    echo json_encode(array("error" => "Unable to download data. User not logged in!"));
+    die("Unable to download data. User not logged in!");
 }

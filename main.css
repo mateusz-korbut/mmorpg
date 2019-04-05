@@ -1,0 +1,42 @@
+body,html {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    min-height: 100vh;
+    margin: 0!important;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.background-img {
+    background-image: url('Resources/1a9b0c65290819.5aef918839bfa.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.sidebar {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

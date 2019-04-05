@@ -1,18 +1,16 @@
 let index = {
     init: function () {
-        $("#loginForm").submit(function(event) {
-            index.handleSubmit($( this ), event, "Services/Auth/login.php");
-        });
+        if (auth.user !== null) {
+            this.displayStats();
+        } else {
+            $("#loginForm").submit(function(event) {
+                index.handleSubmit($( this ), event, "Services/Auth/login.php");
+            });
 
-        $("#registerForm").submit(function(event) {
-            index.handleSubmit($( this ), event, "Services/Auth/register.php");
-        });
-
-        $("#characterForm").submit(function(event) {
-            index.handleCreatingCharacter($( this ), event);
-        });
-
-        this.displayStats();
+            $("#registerForm").submit(function(event) {
+                index.handleSubmit($( this ), event, "Services/Auth/register.php");
+            });
+        }
     },
     sendUser: function (url, user) {
         $.post(url, { name: user.name, password: user.password }, function(data) {
@@ -43,65 +41,40 @@ let index = {
             index.sendUser(url, user);
     },
     displayStats: function () {
+        console.log(this.characters);
+    },
+    displayStats: function () {
         $.get("Services/Stats/getUserCharacters.php", function (data) {
             toaster.show(data);
-            const charactersQuantity = JSON.parse(data).characters;
+            const characters = JSON.parse(data);
+            let levels = [];
+            let coins = [];
+            let health = [];
 
-            if (charactersQuantity)
-                $("#quantityCharacters").text(charactersQuantity);
+            characters.forEach(e => levels.push({name: e.name, y: parseInt(e.level)}));
+            characters.forEach(e => coins.push({name: e.name, y: parseInt(e.coins)}));
+            characters.forEach(e => health.push({name: e.name, y: parseInt(e.health_points)}));
+
+            chart.init("Levels", levels, "#levelsChart");
+            chart.init("Coins", coins, "#coinsChart");
+            chart.init("Health Points", health, "#healthChart");
         })
             .fail(function(data) {
                 toaster.show(data);
             });
 
-        $.get("Services/Stats/getUserCoins.php", function (data) {
+        $.get("Services/Stats/getUserCharactersRacesQuantity.php", function (data) {
             toaster.show(data);
-            const coins = JSON.parse(data).coins;
+            const characters = JSON.parse(data);
+            let races = [];
 
-            if (coins)
-                $("#coins").text(coins);
+            characters.forEach(e => races.push({name: e.name, y: parseInt(e.quantity)}));
+
+            chart.init("Races", races, "#raceChart");
         })
             .fail(function(data) {
                 toaster.show(data);
             });
-
-        $.get("Services/Stats/getUserCharacterMaxLevel.php", function (data) {
-            toaster.show(data);
-            const maxLevel = JSON.parse(data).level;
-
-            if (maxLevel)
-                $("#maxLevel").text(maxLevel);
-        })
-            .fail(function(data) {
-                toaster.show(data);
-            });
-
-        $.get("Services/Stats/getUserFavouriteRace.php", function (data) {
-            toaster.show(data);
-            const raceName = JSON.parse(data).name;
-
-            if (raceName)
-                $("#favouriteRace").text(raceName);
-        })
-            .fail(function(data) {
-                toaster.show(data);
-            });
-    },
-    handleCreatingCharacter: function ($form, event) {
-        event.preventDefault();
-        const name = $form.find("input[name='name']").val();
-        const raceId = $form.find("select[name='raceId']").val();
-
-        if (name !== undefined && raceId !== undefined)
-            $.post("Services/createCharacter.php", { name: name, raceId: raceId }, function(data) {
-                console.log(data);
-                toaster.show(data);
-            })
-                .fail(function(data) {
-                    console.log(data);
-
-                    toaster.show(data);
-                });
     }
 };
 

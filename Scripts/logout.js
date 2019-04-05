@@ -5,7 +5,7 @@ let logout = {
         });
     },
     logout: function () {
-        $.get("Services/logout.php", function (data) {
+        $.get("Services/Auth/logout.php", function (data) {
             toaster.show(data);
             window.location =  "./";
         })
