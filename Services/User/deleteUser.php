@@ -22,6 +22,10 @@ if (isset($_POST["id"]) && isset($_SESSION["user"])
     if (mysqli_query($connection, $query))
     {
         http_response_code(200);
+        if (json_decode($_SESSION["user"])->id == $_POST["id"])
+        {
+            include_once dirname(__FILE__) . "/../Auth/logout.php";
+        }
     }
     else
     {
