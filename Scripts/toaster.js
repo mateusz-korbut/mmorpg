@@ -1,7 +1,8 @@
 let toaster = {
     show:  function(data) {
         if (data.responseText !== undefined) {
-            data = data.responseText;
+            console.log("Response text: " + data.responseText);
+            return;
         }
         let object = JSON.parse(data);
         console.log(object);

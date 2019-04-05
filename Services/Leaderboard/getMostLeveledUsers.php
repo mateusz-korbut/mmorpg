@@ -9,13 +9,11 @@ $query="SELECT
             users.name AS userName,
             SUM(level) AS gainedLevels
         FROM users
-        JOIN users_characters
-        ON users.id = users_characters.user_id
         JOIN characters
-        ON characters.id = users_characters.character_id
+        ON users.id = characters.creator_id
         GROUP BY userId
         ORDER BY gainedLevels DESC
-        LIMIT 10;";
+        LIMIT 10";
 
 $result = $connection->query($query);
 

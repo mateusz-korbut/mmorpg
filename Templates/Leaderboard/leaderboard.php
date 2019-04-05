@@ -4,19 +4,22 @@ require_once dirname(__FILE__) . "/../../Services/Leaderboard/getMostLeveledUser
 
 if ($result)
 {
-    echo "<table>
+    echo "<table class=\"table mb-5 text-center\">
+                <thead>
                     <tr>
-                        <th>userId</th>
-                        <th>userName</th>
-                        <th>gainedLevels</th>
-                    </tr>";
+                        <th>User id</th>
+                        <th>Username</th>
+                        <th>Gained levels</th>
+                    </tr>
+                </thead>";
+                    
 
     while ($row = $result->fetch_object())
     {
         echo sprintf("<tr>
-                        <th>%s</th>
-                        <th>%s</th>
                         <th>%d</th>
+                        <td>%s</td>
+                        <td>%d</td>
                     </tr>",
             $row->userId,
             $row->userName,

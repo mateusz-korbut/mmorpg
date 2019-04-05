@@ -9,22 +9,26 @@ if (!isset($_SESSION["user"]) || !$isSu)
 
     die("You are not authorized");
 }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <?php include("Layout/head.php"); ?>
+    <link rel="stylesheet" href="Styles/leaderboard.css">
+
+    <script src="Scripts/manage.js" defer></script>
+
 </head>
-<body>
+<body class="background-img">
+<div class="row body">
 
-<?php include("Layout/navbar.php");?>
+    <?php include("Layout/navbar.php");?>
 
-<div class="container">
-
-    <main>
+    <div class="col-8 container dashboard align-self-center">
         <?php include("Templates/Manage/manage.php"); ?>
-    </main>
+    </div>
 
     <?php include("Layout/footer.php");?>
 

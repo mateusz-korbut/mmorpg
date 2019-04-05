@@ -11,7 +11,7 @@ $query = sprintf("SELECT
                             roles.name AS roleName,
                             status_id AS statusId,
                             statuses.name AS statusName,
-                            created
+                            date(created) AS created
                         FROM users
                         JOIN roles
                         ON users.role_id = roles.id
@@ -21,6 +21,4 @@ $query = sprintf("SELECT
 
 $result = $connection->query($query);
 
-$connection->close();
-
-return $result;
+return $result->fetch_object();
