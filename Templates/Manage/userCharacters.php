@@ -20,19 +20,19 @@ require_once dirname(__FILE__) . "/../../Services/Profile/getUserCharacters.php"
         <tr id="character-<?=$character->id?>">
             <th><?=$character->id;?></th>
             <td><span id="name-<?=$character->id;?>"><?=$character->name;?></span></td>
-            <form class="input-group">
-                <input type="hidden" id="<?=$character->id?>">
+            <form class="input-group" id="form-<?=$character->id?>">
+                <input type="hidden" name="id" value="<?=$character->id?>" form="form-<?=$character->id?>">
                 <td>
                     <input style="max-width: 50px" class="input-group-number" type="number"
-                           name="level" value="<?=$character->level;?>">
+                           name="level" value="<?=$character->level;?>" form="form-<?=$character->id?>">
                 </td>
                 <td>
                     <input style="max-width: 50px" class="input-group-number" type="number"
-                           name="health_points" value="<?=$character->health_points;?>">
+                           name="health_points" value="<?=$character->health_points;?>" form="form-<?=$character->id?>">
                 </td>
                 <td>
                     <input style="max-width: 100px" class="input-group-number" type="number"
-                           name="coins" value="<?=$character->coins;?>">
+                           name="coins" value="<?=$character->coins;?>" form="form-<?=$character->id?>">
                 </td>
             </form>
             <td>
