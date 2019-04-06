@@ -4,8 +4,20 @@ require_once dirname(__FILE__) . "/../../Utils/databaseConnection.php";
 
 $characters = array();
 
-if (isset($_SESSION["user"])) {
-    $query = sprintf("SELECT
+if (isset($_GET["id"]))
+{
+    $id = $_GET["id"];
+}
+else if (isset($_SESSION["user"]))
+{
+    $id = json_decode($_SESSION["user"])->id;
+}
+else
+{
+    die("You must be logged in or set user id!");
+}
+
+$query = sprintf("SELECT
                                 characters.id,
                                 characters.name,
                                 characters.level,
@@ -14,20 +26,17 @@ if (isset($_SESSION["user"])) {
                             FROM characters
                             JOIN race
                             ON race_id = race.id
-                            WHERE creator_id = %d;", json_decode($_SESSION["user"])->id);
+                            WHERE creator_id = %d;", $id);
 
-    $result = $connection->query($query);
+$result = $connection->query($query);
 
-    if ($result) {
-        while($row = $result->fetch_object()){
-            array_push($characters, $row);
-        }
+if ($result) {
+    while($row = $result->fetch_object()){
+        array_push($characters, $row);
     }
-    else {
-        die($connection->error);
-    }
-
-    return $characters;
-} else {
-    die("Unable to download data. User not logged in!");
 }
+else {
+    die($connection->error);
+}
+
+return $characters;

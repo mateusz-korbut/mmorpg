@@ -19,6 +19,7 @@ if (!isset($_SESSION["user"]) || !$isSu)
     <link rel="stylesheet" href="Styles/leaderboard.css">
 
     <script src="Scripts/manage.js" defer></script>
+    <script src="Scripts/profile.js" defer></script>
 
 </head>
 <body class="background-img">
