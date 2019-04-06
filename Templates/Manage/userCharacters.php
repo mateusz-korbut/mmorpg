@@ -20,9 +20,21 @@ require_once dirname(__FILE__) . "/../../Services/Profile/getUserCharacters.php"
         <tr id="character-<?=$character->id?>">
             <th><?=$character->id;?></th>
             <td><span id="name-<?=$character->id;?>"><?=$character->name;?></span></td>
-            <td><?=$character->level;?></td>
-            <td><?=$character->health_points;?></td>
-            <td><?=$character->coins;?></td>
+            <form class="input-group">
+                <input type="hidden" id="<?=$character->id?>">
+                <td>
+                    <input style="max-width: 50px" class="input-group-number" type="number"
+                           name="level" value="<?=$character->level;?>">
+                </td>
+                <td>
+                    <input style="max-width: 50px" class="input-group-number" type="number"
+                           name="health_points" value="<?=$character->health_points;?>">
+                </td>
+                <td>
+                    <input style="max-width: 100px" class="input-group-number" type="number"
+                           name="coins" value="<?=$character->coins;?>">
+                </td>
+            </form>
             <td>
                 <i class="fas fa-trash ml-2" onclick="profile.deleteCharacter(<?=$character->id;?>)"></i>
             </td>

@@ -28,8 +28,9 @@ let manage = {
                 manage.select.val(manage.prevStatus);
             });
     },
-    displayUserCharacters: function (id) {
+    displayUserCharacters: function (id, name) {
         $("#userCharactersTable").load(`./Templates/Manage/userCharacters.php?id=${id}`);
+        $("#charactersCreatorName").text(name);
         $("#userCharacters").modal("show");
     }
 };

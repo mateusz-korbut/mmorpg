@@ -71,7 +71,7 @@ use entities\Users\Status;
                 </select>
             </td>
             <td>
-                <i class="fas fa-user-edit mr-2" onclick="manage.displayUserCharacters(<?=$user->id;?>)"></i>
+                <i class="fas fa-user-edit mr-2" onclick="manage.displayUserCharacters(<?=$user->id;?>, '<?=$user->name;?>')"></i>
                 <i class="fas fa-trash ml-2" onclick="auth.deleteUser(<?=$user->id;?>)"></i>
             </td>
         </tr>
@@ -92,7 +92,7 @@ use entities\Users\Status;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="createCharacter">Create</button>
+                <button type="button" class="btn btn-primary" onclick="manage.saveChanges()">Save</button>
             </div>
         </div>
     </div>
