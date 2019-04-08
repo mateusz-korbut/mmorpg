@@ -19,17 +19,27 @@
 
     <?php include("Layout/navbar.php");?>
 
-    <div class="col-8 container dashboard">
-        <?php if (isset($_SESSION["user"])): include_once "Templates/Index/charts.php"?>
-        <?php else:
-            $id = "loginForm";
-            $buttonText = "Login";
-            include "Templates/Index/logregForm.php";
-            $id = "registerForm";
-            $buttonText = "Register";
-            include "Templates/Index/logregForm.php";
-        endif; ?>
+    <div class="col-2 container dashboard align-self-center mb-5">
+        <div class="card text-center">
+            <div class="card-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name" minlength="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password" minlength="1">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer mt-2">
+                <button class="btn btn-outline-primary">Login</button>
+                <input class="btn btn-outline-primary" type="submit" value="Register">
+            </div>
+        </div>
     </div>
+
 
     <?php include("Layout/footer.php");?>
 
