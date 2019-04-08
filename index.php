@@ -34,8 +34,8 @@
                 </form>
             </div>
             <div class="card-footer mt-2">
-                <button class="btn btn-outline-primary">Login</button>
                 <input class="btn btn-outline-primary" type="submit" value="Register">
+                <button class="btn btn-outline-primary">Login</button>
             </div>
         </div>
     </div>
