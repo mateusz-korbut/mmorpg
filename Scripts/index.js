@@ -3,12 +3,12 @@ let index = {
         if (auth.user !== null) {
             this.displayStats();
         } else {
-            $("#loginForm").submit(function(event) {
-                index.handleSubmit($( this ), event, "Services/Auth/login.php");
+            $("#login").click(function(event) {
+                index.handleSubmit(event, "Services/Auth/login.php");
             });
 
-            $("#registerForm").submit(function(event) {
-                index.handleSubmit($( this ), event, "Services/Auth/register.php");
+            $("#register").click(function(event) {
+                index.handleSubmit(event, "Services/Auth/register.php");
             });
         }
     },
@@ -33,15 +33,12 @@ let index = {
             "password": password
         };
     },
-    handleSubmit: function ($form, event, url) {
+    handleSubmit: function (event, url) {
         event.preventDefault();
-        let user = index.getUserFromForm($form);
+        let user = index.getUserFromForm($("#userForm"));
 
         if (user.name !== undefined && user.password !== undefined)
             index.sendUser(url, user);
-    },
-    displayStats: function () {
-        console.log(this.characters);
     },
     displayStats: function () {
         $.get("Services/Stats/getUserCharacters.php", function (data) {
