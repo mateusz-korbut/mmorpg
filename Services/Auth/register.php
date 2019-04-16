@@ -25,7 +25,7 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
         (%d, %d, '%s', '%s')", User::TABLE_NAME, $user->roleId, $user->statusId, $user->name, $user->password);
 
     if (mysqli_query($connection, $query)) {
-        $query = "SELECT * FROM daily_stats WHERE DATE_FORMAT(data, '%y-%m-%d') = DATE_FORMAT(NOW(), '%y-%m-%d');";
+        $query = "SELECT * FROM daily_stats WHERE DATE_FORMAT(date, '%y-%m-%d') = DATE_FORMAT(NOW(), '%y-%m-%d');";
         $result = $connection->query($query);
 
         if ($result->num_rows != 0)
