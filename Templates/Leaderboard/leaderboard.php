@@ -19,7 +19,7 @@ if ($result):
         </thead>
         <tbody>
         <?php while($row = $result->fetch_object()): ?>
-            <tr>
+            <tr onclick="document.location.href = 'profile.php?id=<?=$row->userId?>'">
                 <th><?=$row->userId?></th>
                 <th><?=$row->userName?></th>
                 <th><?=$row->gainedLevels?></th>
