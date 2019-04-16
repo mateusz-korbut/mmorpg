@@ -3,7 +3,10 @@
 require_once dirname(__FILE__) . "/../../Utils/databaseConnection.php";
 
 $user = json_decode($_SESSION["user"]);
-
+if (isset($_GET['id']))
+{
+    $user->id = $_GET['id'];
+}
 $query = sprintf("SELECT
                             users.id AS userId,
                             users.name AS userName,
