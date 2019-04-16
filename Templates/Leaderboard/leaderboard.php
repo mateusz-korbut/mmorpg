@@ -7,6 +7,11 @@ if ($result):
     <table class="table mb-5 text-center">
         <thead>
             <tr>
+                <td colspan="3">
+                    <h3>Leaderboard</h3>
+                </td>
+            </tr>
+            <tr>
                 <th>User id</th>
                 <th>Username</th>
                 <th>Gained levels</th>
