@@ -19,6 +19,22 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
         $user = $result->fetch_assoc();
         if (password_verify($_POST["password"], $user["password"]))
         {
+            $query = "SELECT * FROM daily_stats WHERE DATE_FORMAT(data, '%y-%m-%d') = DATE_FORMAT(NOW(), '%y-%m-%d');";
+            $result = $connection->query($query);
+
+            if ($result->num_rows != 0)
+            {
+                $stats = $result->fetch_object();
+                $stats->logged_in += 1;
+
+                $query = sprintf("UPDATE daily_stats SET logged_in = '%s' WHERE id = %d;",
+                    $stats->logged_in, $stats->id);
+            }
+            else
+            {
+                $query = "INSERT INTO daily_stats (logged_in, data) VALUES ('1', NOW())";
+                $connection->query($query);
+            }
             http_response_code(200);
 
             session_start();
