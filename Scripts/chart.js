@@ -21,6 +21,7 @@ let chart = {
     series: function (registrations, logged_in) {
         this.chart = new CanvasJS.Chart("reportChart", {
             animationEnabled: true,
+            backgroundColor: "rgb(255,255,255, 0.9)",
             theme: "light2",
             title:{
                 text: "Site Traffic"
