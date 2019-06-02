@@ -50,8 +50,8 @@ if (!isset($_SESSION["user"]) || !$isSu)
                     <input class="form-control" type="date" name="to">
                 </div>
             </div>
-            <div class="form-group row mx-3">
-                <div class="col-4">
+            <div class="form-group row m-3">
+                <div class="col-4 m-3">
                     <input class="form-control" type="submit" value="Change">
                 </div>
             </div>
