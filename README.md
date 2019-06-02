@@ -11,6 +11,7 @@ Project prepared as a student's project - "Create players management site for MM
 * Manage user characters for administrator
 * Search users via username
 * Leaderboard
+* Daily login and registration report
 
 ## Screenshots:
 
@@ -22,3 +23,6 @@ User profile:
 
 Admin manage page:
 ![Manage](screenshots/characterEditor.PNG)
+
+Site reports page:
+![Reports](screenshots/reports.PNG)
