@@ -14,11 +14,6 @@ let report = {
                 register.push({x: report.toDate(e.date), y: parseInt(e.registered)});
             });
 
-            console.log(login);
-            console.log(register);
-
-            // chart.init("Logged in", login, "#loginChart");
-            // chart.init("Registered", register, "#registerChart");
             chart.series(register, login);
         })
             .fail(function(data) {
