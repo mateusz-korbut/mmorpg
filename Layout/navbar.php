@@ -51,6 +51,13 @@
                         </div>
                     </div>
                 </a>
+                <a class="btn btn-outline-primary my-2" href="report.php">
+                    <div class="row">
+                        <div class="col">
+                            Report
+                        </div>
+                    </div>
+                </a>
         <?php endif; ?>
     <?php endif; ?>
 </navbar>
