@@ -7,19 +7,22 @@ if ($result):
     <table class="table mb-5 text-center">
         <thead>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <h3>Leaderboard</h3>
                 </td>
             </tr>
             <tr>
+                <th>#</th>
                 <th>User id</th>
                 <th>Username</th>
                 <th>Gained levels</th>
             </tr>
         </thead>
         <tbody>
-        <?php while($row = $result->fetch_object()): ?>
+        <?php $i = 1;
+            while($row = $result->fetch_object()): ?>
             <tr onclick="document.location.href = 'profile.php?id=<?=$row->userId?>'">
+                <th><b><?php echo $i; $i++;?></b></th>
                 <th><?=$row->userId?></th>
                 <th><?=$row->userName?></th>
                 <th><?=$row->gainedLevels?></th>
