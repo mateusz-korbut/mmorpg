@@ -1,10 +1,13 @@
 <?php
 
-require_once dirname(__FILE__) . "/../Utils/databaseConnection.php";
-
 http_response_code(400);
 
-if (isset($_POST["name"]))
+require_once dirname(__FILE__) . "/../Utils/databaseConnection.php";
+
+session_start();
+$isSu = include_once dirname(__FILE__) . "/Auth/isSu.php";
+
+if ($isSu)
 {
     $query = "SELECT * FROM daily_stats";
 
@@ -31,7 +34,7 @@ if (isset($_POST["name"]))
 }
 else
 {
-    echo json_encode(array("error" => "You must set query!"));
+    echo json_encode(array("error" => "You must be a super user!"));
 }
 
 $connection->close();
