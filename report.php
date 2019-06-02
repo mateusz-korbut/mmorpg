@@ -41,13 +41,13 @@ if (!isset($_SESSION["user"]) || !$isSu)
             <div class="form-group row mx-3">
                 <label for="example-datetime-local-input" class="col-2 col-form-label">From: </label>
                 <div class="col-4">
-                    <input class="form-control" type="date" name="from">
+                    <input class="form-control" type="date" name="from" id="from">
                 </div>
             </div>
             <div class="form-group row mx-3">
                 <label for="example-datetime-local-input" class="col-2 col-form-label">To: </label>
                 <div class="col-4">
-                    <input class="form-control" type="date" name="to">
+                    <input class="form-control" type="date" name="to" id="to">
                 </div>
             </div>
             <div class="form-group row m-3">

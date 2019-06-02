@@ -3,7 +3,21 @@ let report = {
         this.displayReport();
     },
     displayReport: function () {
-        $.get("Services/getDailyStats.php", function (data) {
+        let scriptUrl = "Services/getDailyStats.php?";
+        const url = new URL(window.location.href);
+        const fromParam = url.searchParams.get("from");
+        const toParam = url.searchParams.get("to");
+        if (fromParam) {
+            scriptUrl += "from=" + fromParam;
+            $('#from').val(fromParam);
+
+        }
+        if (toParam) {
+            scriptUrl += "&to=" + toParam;
+            $('#to').val(toParam);
+        }
+
+        $.get(scriptUrl, function (data) {
             toaster.show(data);
             data = JSON.parse(data);
             let login = [];

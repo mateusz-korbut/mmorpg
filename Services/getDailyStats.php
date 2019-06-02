@@ -11,6 +11,30 @@ if ($isSu)
 {
     $query = "SELECT * FROM daily_stats";
 
+    $subquery = " WHERE id IN ( SELECT id FROM daily_stats WHERE";
+
+    if (isset($_GET["from"]))
+    {
+        $subquery .= " date > '" . $_GET["from"] . "'";
+    }
+
+    if (isset($_GET["to"]))
+    {
+        if (isset($_GET["from"]))
+        {
+            $subquery .= " AND";
+        }
+        $subquery .= " date < '" . $_GET["to"] . "'";
+    }
+
+    $subquery .= ")";
+
+    if (isset($_GET["from"]) || isset($_GET["to"]))
+    {
+        $query .= $subquery;
+    }
+    $query .= " ORDER BY date";
+
     $result = $connection->query($query);
 
     if ($result)
