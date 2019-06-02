@@ -23,6 +23,6 @@
         <div id="raceChart"></div>
     </div>
 </div>
-<script src="Scripts/chart.js" defer></script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<script src="/Scripts/chart.js" defer></script>
+<script type="text/javascript" src="/Scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.canvasjs.min.js"></script>
