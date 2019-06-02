@@ -23,11 +23,11 @@ if (!isset($_SESSION["user"]) || !$isSu)
 
     <?php include("Layout/navbar.php");?>
 
-    <div class="col-8 container dashboard align-self-center">
+    <div class="col-8 container dashboard mt-5">
         <div id="reportChart"></div>
         <script src="Scripts/chart.js" defer></script>
-        <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+        <script type="text/javascript" src="Scripts/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="Scripts/jquery.canvasjs.min.js"></script>
     </div>
 
     <?php include("Layout/footer.php");?>
