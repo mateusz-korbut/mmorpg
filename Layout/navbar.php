@@ -4,12 +4,18 @@
         <h1 class="text-center"><a href="./">MMO users manager</a></h1>
     </div>
 </div>
+<div class="row my-2">
+    <div class="col">
+        <form class="input-group" action="users.php" method="post">
+            <input type="text" name="name" class="form-control" placeholder="Find user...">
+        </form>
+    </div>
+</div>
 <?php if (isset($_SESSION["user"])): ?>
     <div class="row my-2">
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <script src="Scripts/auth.js"></script>
                     </button>
                     <h5 class="card-title">Welcome <a href="profile.php"><span id="username"></span></a></h5>
                     <button id="logoutBtn" class="btn btn-outline-secondary">Logout</button>
@@ -42,6 +48,13 @@
                     <div class="row">
                         <div class="col">
                             Manage
+                        </div>
+                    </div>
+                </a>
+                <a class="btn btn-outline-primary my-2" href="report.php">
+                    <div class="row">
+                        <div class="col">
+                            Report
                         </div>
                     </div>
                 </a>

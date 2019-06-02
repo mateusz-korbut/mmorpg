@@ -25,6 +25,23 @@ if (isset($_POST["name"]) && isset($_POST["password"]))
         (%d, %d, '%s', '%s')", User::TABLE_NAME, $user->roleId, $user->statusId, $user->name, $user->password);
 
     if (mysqli_query($connection, $query)) {
+        $query = "SELECT * FROM daily_stats WHERE DATE_FORMAT(date, '%y-%m-%d') = DATE_FORMAT(NOW(), '%y-%m-%d');";
+        $result = $connection->query($query);
+
+        if ($result->num_rows != 0)
+        {
+            $stats = $result->fetch_object();
+            $stats->registered += 1;
+
+            $query = sprintf("UPDATE daily_stats SET register = '%s' WHERE id = %d;",
+                $stats->registered, $stats->id);
+        }
+        else
+        {
+            $query = "INSERT INTO daily_stats (registered, data) VALUES ('1', NOW())";
+            $connection->query($query);
+        }
+
         http_response_code(201);
         session_start();
         $userSerialized = json_encode(array(

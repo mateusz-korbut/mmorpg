@@ -7,6 +7,8 @@ require_once dirname(__FILE__) . "/../../Entities/Users/Status.php";
 use entities\Users\Role;
 use entities\Users\Status;
 
+$isAdmin = json_decode($_SESSION["user"])->role_id == Role::Admin;
+
 ?>
 
 <table class="table mt-3 text-center">
@@ -32,26 +34,42 @@ use entities\Users\Status;
             <td><?=$user->name;?></td>
             <td><?=$user->created;?></td>
             <td>
-                <select class="form-control"
-                        onfocus="manage.prevRole = $(this).val()"
-                        onchange="manage.updateRole($( this ), <?=$user->id;?>)">
-                    <?php
-                        echo "<option ";
-                        if(Role::Admin == $user->roleId)
-                            echo "selected";
-                        echo " value=" . Role::Admin . ">Admin</option>";
+                <?php if ($isAdmin): ?>
+                    <select class="form-control"
+                            onfocus="manage.prevRole = $(this).val()"
+                            onchange="manage.updateRole($( this ), <?=$user->id;?>)">
+                        <?php
+                            echo "<option ";
+                            if(Role::Admin == $user->roleId)
+                                echo "selected";
+                            echo " value=" . Role::Admin . ">Admin</option>";
 
-                        echo "<option ";
-                        if(Role::Moderator == $user->roleId)
-                            echo "selected";
-                        echo " value=" . Role::Moderator . ">Moderator</option>";
+                            echo "<option ";
+                            if(Role::Moderator == $user->roleId)
+                                echo "selected";
+                            echo " value=" . Role::Moderator . ">Moderator</option>";
 
-                        echo "<option ";
-                        if(Role::User == $user->roleId)
-                            echo "selected";
-                        echo " value=" . Role::User . ">User</option>";
-                    ?>
-                </select>
+                            echo "<option ";
+                            if(Role::User == $user->roleId)
+                                echo "selected";
+                            echo " value=" . Role::User . ">User</option>";
+                        ?>
+                    </select>
+                <?php else:
+                    echo "<p>";
+                    if(Role::Admin == $user->roleId) {
+                        echo "Admin";
+                    }
+                    if(Role::Moderator == $user->roleId) {
+                        echo "Moderator";
+                    }
+                    if(Role::User == $user->roleId) {
+                        echo "User";
+                    }
+                    echo "</p>";
+
+                    endif
+                ?>
             </td>
             <td>
                 <select class="form-control"
@@ -70,10 +88,12 @@ use entities\Users\Status;
                     ?>
                 </select>
             </td>
-            <td>
-                <i class="fas fa-user-edit mr-2" onclick="manage.displayUserCharacters(<?=$user->id;?>, '<?=$user->name;?>')"></i>
-                <i class="fas fa-trash ml-2" onclick="auth.deleteUser(<?=$user->id;?>)"></i>
-            </td>
+                <td>
+                    <i class="fas fa-user-edit mr-2" onclick="manage.displayUserCharacters(<?=$user->id;?>, '<?=$user->name;?>')"></i>
+                    <?php if ($isAdmin): ?>
+                        <i class="fas fa-trash ml-2" onclick="auth.deleteUser(<?=$user->id;?>)"></i>
+                    <?php endif; ?>
+                </td>
         </tr>
     <?php endforeach; ?>
     </tbody>
