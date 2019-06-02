@@ -8,9 +8,7 @@ if (isset($_SESSION["user"]))
 {
     $userRole = json_decode($_SESSION["user"])->role_id;
 
-    if ($userRole == Role::Admin || $userRole == Role::Moderator) {
-        return true;
-    }
+    return $userRole == Role::Admin || $userRole == Role::Moderator;
 }
 
 return false;
